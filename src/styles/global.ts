@@ -1,9 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Abel&display=swap');
-  @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
-  @import url('https://fonts.googleapis.com/css?family=Manjari&display=swap');
 
   *{
     padding: 0;
@@ -13,9 +10,9 @@ export default createGlobalStyle`
   }
 
   body {
-    background: #fff;
-    color: #666;
-    font-family: 'Manjari';
+    background: #f6f6f6;
+    color: #222;
+    font-family: 'Ubuntu', sans-serif;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
   }
