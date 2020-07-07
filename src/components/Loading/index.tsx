@@ -7,7 +7,6 @@ interface LoaginProps {
 }
 
 const Loading: React.FC<LoaginProps> = ({ isShowing }) => {
-
   if (isShowing)
     return (
       <Container>
@@ -17,7 +16,7 @@ const Loading: React.FC<LoaginProps> = ({ isShowing }) => {
       </Container>
     );
 
-  return <></>
+  return <></>;
 };
 
 export default Loading;
