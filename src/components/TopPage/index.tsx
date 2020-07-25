@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   MdHistory,
   MdDoneAll,
   MdImportExport,
   MdPublish,
+  MdClose,
 } from "react-icons/md";
+
+import HomeContext from "./../../pages/Home/context";
 
 import {
   Container,
@@ -19,6 +22,8 @@ import {
 } from "./styles";
 
 const TopPage: React.FC<any> = () => {
+  const { openImportData, cancelImportData, showing } = useContext(HomeContext);
+
   return (
     <Container>
       <RowTop>
@@ -26,9 +31,15 @@ const TopPage: React.FC<any> = () => {
           <MdHistory size="2em" color="#fff" />
           <AppTitle>Timebanking</AppTitle>
         </AppNameContent>
-        <ButtonLink>
-          <MdPublish size="18px" color="#f6f6f6" />
-        </ButtonLink>
+        {showing ? (
+          <ButtonLink onClick={() => cancelImportData()}>
+            <MdClose size="18px" color="#f6f6f6" />
+          </ButtonLink>
+        ) : (
+          <ButtonLink onClick={() => openImportData()}>
+            <MdPublish size="18px" color="#f6f6f6" />
+          </ButtonLink>
+        )}
       </RowTop>
       <CardsArea>
         <CardContainer>

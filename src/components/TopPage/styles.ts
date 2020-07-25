@@ -44,11 +44,21 @@ export const ButtonLink = styled.button`
   align-items: flex-end;
   justify-content: center;
   align-items: center;
+  transition: 0.5s ease-in-out;
+  position: relative;
+
+  &:hover {
+    background: #32cd32;
+  }
+
+  &:after {
+    content: "";
+  }
 `;
 
 export const CardsArea = styled.div`
   flex: 1;
-  padding: 0 30%;
+  /* padding: 0 30%; */
   display: flex;
   flex-direction: row;
   align-items: flex-end;
