@@ -26,6 +26,11 @@ const Home: React.FC = () => {
   function onCancelImportData() {
     setShouldImport(false);
   }
+
+  function onImportData(data: any[]) {
+    console.log(data);
+  }
+
   // return <TopPage />;
   return (
     <HomeContext.Provider
@@ -36,7 +41,7 @@ const Home: React.FC = () => {
       }}
     >
       <Container>
-        <ImportData shouldImport={shouldImport} />
+        <ImportData shouldImport={shouldImport} onImport={onImportData} />
         <Loading />
         <TopPage />
         <Content />

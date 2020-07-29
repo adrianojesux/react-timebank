@@ -2,15 +2,18 @@ import React, { useCallback, useMemo } from "react";
 
 import { useDropzone } from "react-dropzone";
 
+import { parseCsv, removerAcentos } from "./../../utils/functions";
+
 import { Container, BoxInputData, UploadMessage, DropArea } from "./styles";
 
 import { MdPublish } from "react-icons/md";
 
 interface ImportDataProps {
   shouldImport?: boolean;
+  onImport: (data: Array<any>) => void;
 }
 
-const ImportData: React.FC<ImportDataProps> = ({ shouldImport }) => {
+const ImportData: React.FC<ImportDataProps> = ({ shouldImport, onImport }) => {
   const onDrop = useCallback((acceptFiles) => {
     console.log(acceptFiles);
     acceptFiles.forEach((file: any) => {
@@ -21,10 +24,12 @@ const ImportData: React.FC<ImportDataProps> = ({ shouldImport }) => {
 
       reader.onload = () => {
         const readed = reader.result;
-        console.log(readed);
+        const json = parseCsv(readed as string);
+        onImport(json);
+        // console.log(console.log(encodeURI(readed as string)));
       };
-
-      reader.readAsArrayBuffer(file);
+      reader.readAsText(file, "ISO-8859-4");
+      // reader.read(file);
     });
   }, []);
 
