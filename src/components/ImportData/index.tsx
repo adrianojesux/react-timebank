@@ -7,10 +7,11 @@ import { parseCsv, removerAcentos } from "./../../utils/functions";
 import { Container, BoxInputData, UploadMessage, DropArea } from "./styles";
 
 import { MdPublish } from "react-icons/md";
+import { RowData } from "interfaces/rowData";
 
 interface ImportDataProps {
   shouldImport?: boolean;
-  onImport: (data: Array<any>) => void;
+  onImport: (data: Array<RowData>) => void;
 }
 
 const ImportData: React.FC<ImportDataProps> = ({ shouldImport, onImport }) => {
@@ -25,7 +26,23 @@ const ImportData: React.FC<ImportDataProps> = ({ shouldImport, onImport }) => {
       reader.onload = () => {
         const readed = reader.result;
         const json = parseCsv(readed as string);
-        onImport(json);
+        console.log(json);
+        const data = json.map((row: any) => {
+          let a: any = {};
+          for (const key in row) {
+            if (
+              Object.prototype.hasOwnProperty.call(row, key) &&
+              key.trim() !== "" &&
+              row[key]
+            ) {
+              a[removerAcentos(key)] = removerAcentos(
+                String(row[key]).toLowerCase()
+              );
+            }
+          }
+          return a;
+        });
+        onImport(data as Array<RowData>);
         // console.log(console.log(encodeURI(readed as string)));
       };
       reader.readAsText(file, "ISO-8859-4");

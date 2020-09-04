@@ -21,7 +21,17 @@ import {
   CardTitle,
 } from "./styles";
 
-const TopPage: React.FC<any> = () => {
+interface TopPageProps {
+  planned_hours: string;
+  hours_performed: string;
+  hours_balance: string;
+}
+
+const TopPage: React.FC<TopPageProps> = ({
+  planned_hours,
+  hours_balance,
+  hours_performed,
+}) => {
   const { openImportData, cancelImportData, showing } = useContext(HomeContext);
 
   return (
@@ -48,7 +58,7 @@ const TopPage: React.FC<any> = () => {
             <h2>Horas Planejadas</h2>
           </CardTitle>
           <CardContent>
-            <h1>250</h1>
+            <h1>{planned_hours}</h1>
           </CardContent>
         </CardContainer>
         <CardContainer>
@@ -57,7 +67,7 @@ const TopPage: React.FC<any> = () => {
             <h2>Horas Realizadas</h2>
           </CardTitle>
           <CardContent>
-            <h1>200</h1>
+            <h1>{hours_performed}</h1>
           </CardContent>
         </CardContainer>
         <CardContainer>
@@ -66,7 +76,7 @@ const TopPage: React.FC<any> = () => {
             <h2>Saldo Total</h2>
           </CardTitle>
           <CardContent>
-            <h1 className="negative">-50</h1>
+            <h1 className="negative">{hours_balance}</h1>
           </CardContent>
         </CardContainer>
       </CardsArea>
