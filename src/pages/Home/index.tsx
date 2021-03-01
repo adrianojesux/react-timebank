@@ -9,7 +9,7 @@ import masks from "./../../utils/mask";
 import HomeContext from "./context";
 import { RowData } from "interfaces/rowData";
 
-const InputMaked = WithMask(Input, masks.maskCPF);
+const InputMasked = WithMask(Input, masks.maskCPF);
 
 const Home: React.FC = () => {
   const [value, setValue] = useState<string>("");
